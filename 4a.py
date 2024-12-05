@@ -3,7 +3,7 @@ import re
 all_lines = []
 xmas_appearances = 0
 
-with open("4.txt", "r") as file:
+with open("4-test.txt", "r") as file:
     for line in file:
       all_lines.append(line.strip())
 
@@ -50,15 +50,15 @@ for i in range(len(all_lines)):
 
         # Straight down.
         horizontal_direction = 0
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
         # Diagonals.
         horizontal_direction = 1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
         # Diagonals.
         horizontal_direction = -1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
   if i >= 3:
     for index, char in enumerate(line):
@@ -68,15 +68,15 @@ for i in range(len(all_lines)):
 
         # Straight up.
         horizontal_direction = 0
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
         # Diagonals.
         horizontal_direction = 1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
         # Diagonals.
         horizontal_direction = -1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, index, i)
+        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
 print(xmas_appearances)
 

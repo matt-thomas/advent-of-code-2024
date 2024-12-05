@@ -43,41 +43,15 @@ for i in range(len(all_lines)):
   # Add to count.
   xmas_appearances += count
 
-  if (i + 4) <= len(all_lines):
-    for index, char in enumerate(line):
-      if char == 'X':
-        # TODO Find occurences of XMAS below.
-        vertical_direction = 1
-
-        # Straight down.
-        horizontal_direction = 0
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
-
-        # Diagonals.
-        horizontal_direction = 1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
-
-        # Diagonals.
-        horizontal_direction = -1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
-
-  if i >= 3:
-    for index, char in enumerate(line):
-      if char == 'X':
-        # TODO Find occurences of XMAS above.
-        vertical_direction = -1
-
-        # Straight up.
-        horizontal_direction = 0
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
-
-        # Diagonals.
-        horizontal_direction = 1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
-
-        # Diagonals.
-        horizontal_direction = -1
-        xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
+  directions = [(1, 0), (1, 1), (1, -1), (-1, 0), (-1, 1), (-1, -1)]  # Vertical and horizontal directions
+  for index, char in enumerate(line):
+    if char == 'X':
+        for vertical_direction, horizontal_direction in directions:
+            # Check boundary conditions
+            if vertical_direction == 1 and (i + 4) <= len(all_lines):  # Downward
+                xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
+            elif vertical_direction == -1 and i >= 3:  # Upward
+                xmas_appearances += check_for_xmas(horizontal_direction, vertical_direction, i, index)
 
 print(xmas_appearances)
 
